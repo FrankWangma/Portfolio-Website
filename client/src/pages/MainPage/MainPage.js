@@ -4,6 +4,7 @@ import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import ProjectSlider from "../../components/ProjectSlider"
 import styles from "./MainPage.module.css";
+import Header from "../../components/Header";
 
 const SLIDE_INFO = [
     { backgroundColor: '#ff7c7c', title: 'Slide 1' },
@@ -44,43 +45,47 @@ const MainPage = () => {
     };
 
     return(
-        <div className={styles.MainPage}>
-        <Grid container 
-            spacing={0}
-            direction="column"
-            alignItems="center"
-            justify="center"
-        >
-            <Grid item xs={12}>
-                <Typography variant='h1'>
-                Frank Wang Ma
-                </Typography>
-                <Typography variant='h2' >
-                    Software Engineer
-                </Typography>
+    <div>
+        <Header />
+            <div className={styles.MainPage}>
+            
+            <Grid container 
+                spacing={0}
+                direction="column"
+                alignItems="center"
+                justify="center"
+            >
+                <Grid item xs={12}>
+                    <Typography variant='h1'>
+                    Frank Wang Ma
+                    </Typography>
+                    <Typography variant='h2' >
+                        Software Engineer
+                    </Typography>
+                </Grid>
+                <Grid container xs={12} alignItems = "center" >
+                    <Grid item xs={3}>
+                        <Arrow 
+                            direction='left'
+                            clickFunction={() => onArrowClick('left')}
+                        />
+                    </Grid>
+                    <Grid item xs={6}>
+                        <Fade in={slideIn}>
+                            <div>
+                                <ProjectSlider content={content}/>  
+                            </div>
+                        </Fade>
+                    </Grid>
+                    <Grid item xs={3}>
+                        <Arrow 
+                            direction='right'
+                            clickFunction={() => onArrowClick('right')}
+                        />
+                    </Grid>
+                </Grid>
             </Grid>
-            <Grid container xs={12} alignItems = "center" >
-                <Grid item xs={3}>
-                    <Arrow 
-                        direction='left'
-                        clickFunction={() => onArrowClick('left')}
-                    />
-                </Grid>
-                <Grid item xs={6}>
-                    <Fade in={slideIn}>
-                        <div>
-                            <ProjectSlider content={content}/>  
-                        </div>
-                    </Fade>
-                </Grid>
-                <Grid item xs={3}>
-                    <Arrow 
-                        direction='right'
-                        clickFunction={() => onArrowClick('right')}
-                    />
-                </Grid>
-            </Grid>
-        </Grid>
+        </div>
     </div>
     );
 };
