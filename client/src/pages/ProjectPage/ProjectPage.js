@@ -1,10 +1,9 @@
 import React, {useState} from "react";
-import { Typography, Grid, Fade } from "@material-ui/core";
+import { Fade } from "@material-ui/core";
 import KeyboardArrowLeftIcon from '@material-ui/icons/KeyboardArrowLeft';
 import KeyboardArrowRightIcon from '@material-ui/icons/KeyboardArrowRight';
 import ProjectSlider from "../../components/ProjectSlider"
 import styles from "./ProjectPage.module.css";
-import Header from "../../components/Header";
 
 const SLIDE_INFO = [
     { backgroundColor: '#ff7c7c', title: 'Slide 1' },
@@ -45,7 +44,7 @@ const ProjectPage = () => {
     };
 
     return(
-    <div>
+    <div className={styles.ProjectPage}>
         <Arrow 
             direction='left'
             clickFunction={() => onArrowClick('left')}

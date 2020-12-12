@@ -1,31 +1,35 @@
+import React from 'react';
+import {
+  Nav,
+  NavLink,
+  Bars,
+  NavMenu,
+  NavBtn,
+  NavBtnLink
+} from './NavbarElements';
 
-import React from "react";
-import { ReactNavbar } from "react-responsive-animate-navbar";
-
-const Header = () => (
-    <div>
-        <ReactNavbar color="rgb(18,18,18)"  
-        logo={"https://svgshare.com/i/SG0.svg"}
-        menu={[
-            { name: "HOME", to: "/" },
-            { name: "PROJECTS", to: "/projects" },
-            { name: "ABOUT ME", to: "/about" },
-            { name: "CONTACT", to: "/contact" },
-        ]}
-        
-        social={[
-            {
-            name: "Linkedin",
-            url: "https://www.linkedin.com/in/frank-wangma/",
-            icon: ["fab", "linkedin-in"],
-            },
-            {
-            name: "Facebook",
-            url: "https://www.facebook.com/frank.wangma.5/",
-            icon: ["fab", "facebook-f"],
-            }
-        ]}/>
-      </div>
-);
+const Header = () => {
+  return (
+    <>
+      <Nav>
+        <NavLink to='/'>
+          <img src={"https://svgshare.com/i/SG0.svg"} alt='logo' />
+        </NavLink>
+        <Bars />
+        <NavMenu>
+          <NavLink exact to='/' activeStyle>
+            Home
+          </NavLink>
+          <NavLink exact to='/projects' activeStyle>
+            Projects
+          </NavLink>
+          <NavLink exact to='/about' activeStyle>
+            About Me
+          </NavLink>
+        </NavMenu>
+      </Nav>
+    </>
+  );
+};
 
 export default Header;

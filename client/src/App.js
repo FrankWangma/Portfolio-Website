@@ -1,7 +1,14 @@
 import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
-import Routes from "./routes/routes";
 import './App.css';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect
+} from "react-router-dom";
+import MainPage from "./pages/MainPage/MainPage";
+import ProjectPage from "./pages/ProjectPage/ProjectPage";
 import Header from "./components/Header";
 
 function App() {
@@ -9,7 +16,15 @@ function App() {
     <Router>
       <Header />
       <div className="App">
-        <Routes/>
+        <Switch>
+          <Route exact path="/">
+            <MainPage />
+          </Route>
+          <Route exact path="/projects">
+            <ProjectPage />
+          </Route>
+          <Redirect from="*" to="/" />
+        </Switch>
       </div>
     </Router>
   );
