@@ -1,6 +1,6 @@
 import React from "react";
 import { Typography, Grid, Card } from "@material-ui/core";
-import styles from './ProjectSlider.module.css'
+import styles from './Components.module.css'
 
 const ProjectSlider = (props) => {
     const {backgroundColor, title } = props.content;

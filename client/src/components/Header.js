@@ -4,16 +4,15 @@ import {
   NavLink,
   Bars,
   NavMenu,
-  NavBtn,
-  NavBtnLink
 } from './NavbarElements';
+import styles from './Components.module.css'
 
 const Header = () => {
   return (
-    <>
+    <div className={styles.sticky}>
       <Nav>
         <NavLink to='/'>
-          <img src={"https://svgshare.com/i/SG0.svg"} alt='logo' />
+          <img className={styles.Image} src={"https://svgshare.com/i/SG0.svg"} alt='logo' />
         </NavLink>
         <Bars />
         <NavMenu>
@@ -28,7 +27,7 @@ const Header = () => {
           </NavLink>
         </NavMenu>
       </Nav>
-    </>
+    </div>
   );
 };
 
