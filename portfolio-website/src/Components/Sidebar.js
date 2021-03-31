@@ -24,6 +24,9 @@ const Sidebar = (props) => {
             classes={{paper: classes.MuiDrawer}}
         >
             <List>
+                <ListItem>
+                    <Typography classes={{root: classes.Text}} variant="h5">Frank Wang Ma</Typography>
+                </ListItem>
                 {props.SidebarNames.map((text, index) => (
                     <Link to={props.Links[index]}>
                         <ListItem button key={text}>
