@@ -1,9 +1,12 @@
 import React from 'react';
+import {Typography} from '@material-ui/core';
 
-export default function Home() {
+const Home = ()  => {
     return (
         <div>
-            Home
+            <Typography>Hello</Typography>
         </div>
     )
 }
+
+export default Home

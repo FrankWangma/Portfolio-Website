@@ -3,25 +3,16 @@ import './App.css';
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link 
+  Route
 } from 'react-router-dom';
-import { Button } from '@material-ui/core';
 import Home from './Pages/Home'
+import Sidebar from './Components/Sidebar';
 
-export default function App() {
+const App = () => {
   return (
     <Router>
       <div>
-        <Button>
-          <Link to="/home">About</Link>
-        </Button>
-        <Button>
-          <Link to="/about">About</Link>
-        </Button>
-        <Button>
-          <Link to="/projects">Projects</Link>
-        </Button>
+        <Sidebar SidebarNames={['Home', 'About Me', 'Projects']} Links={['/', '/about','/projects']}/>
         
         <Switch>
           <Route path="/about">
@@ -39,3 +30,5 @@ export default function App() {
     </Router>
   );
 }
+
+export default App;
