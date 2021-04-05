@@ -1,6 +1,7 @@
 import React from 'react';
-import {Typography, Paper} from '@material-ui/core';
+import {Typography, Paper, Button, Grid} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import { Link } from 'react-router-dom';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -12,12 +13,9 @@ const useStyles = makeStyles((theme) => ({
         width: "33vw",
         marginLeft: '240px',
     },
-    paper: {
-        padding: theme.spacing(2),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-        width: '50%',
-        marginLeft: '25%'
+    container: {
+        margin: '20px',
+        marginBottom: '50px'
     }
   }));
 
@@ -25,7 +23,16 @@ const Home = ()  => {
     const classes = useStyles();
     return (
         <div className={classes.root}>
-                <Paper className={classes.paper}>Hi! I am Frank!</Paper>
+            <Grid container className={classes.container}>
+                <Grid item xs='12'>
+                    <Typography variant='h1'>Hi! I am Frank!</Typography>
+                </Grid>
+                <Grid item xs='6'>
+                    <Link to='/files/CV-Frank-Wang-Ma.pdf' target='_blank' download style={{ textDecoration: 'none' }}>
+                        <Button variant='contained'>Download CV</Button>
+                    </Link>
+                </Grid>
+            </Grid>
         </div>
     )
 }
