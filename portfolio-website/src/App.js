@@ -1,4 +1,3 @@
-import logo from './logo.svg';
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -11,20 +10,15 @@ import Sidebar from './Components/Sidebar';
 const App = () => {
   return (
     <Router>
+      <Sidebar SidebarNames={['Home', 'About Me', 'Projects']} Links={['/', '/about','/projects']}/>
       <div>
-        <Sidebar SidebarNames={['Home', 'About Me', 'Projects']} Links={['/', '/about','/projects']}/>
-        
         <Switch>
           <Route path="/about">
           </Route>
           <Route path="/projects">
           </Route>
-          <Route path="/">
-              <Home />
-          </Route>
-          <Route path="*">
-              <Home />
-          </Route>
+          <Route path="/" component={Home} />
+          <Route path="*" component={Home} />
         </Switch>
       </div>
     </Router>

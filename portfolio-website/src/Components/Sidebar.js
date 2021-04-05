@@ -7,7 +7,7 @@ import { SocialIcon  } from 'react-social-icons'
 const useStyles = makeStyles({
     MuiDrawer: {
         backgroundColor: "#2b2b2b",
-        width: 240
+        width: 240,
     },
 
     Text: {
