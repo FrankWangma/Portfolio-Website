@@ -1,5 +1,6 @@
 import React from 'react';
 import { Drawer, List, ListItem, Typography} from '@material-ui/core';
+import { ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { SocialIcon  } from 'react-social-icons'
@@ -12,7 +13,7 @@ const useStyles = makeStyles({
 
     Text: {
         color: "#ffffff"
-    }
+    },
 });
 
 const Sidebar = (props) => {
@@ -23,8 +24,8 @@ const Sidebar = (props) => {
             variant="permanent"
             classes={{paper: classes.MuiDrawer}}
         >
-            <List>
-                <ListItem>
+            <List >
+                <ListItem> 
                     <Typography classes={{root: classes.Text}} variant="h5">Frank Wang Ma</Typography>
                 </ListItem>
                 {props.SidebarNames.map((text, index) => (
@@ -35,10 +36,13 @@ const Sidebar = (props) => {
                     </Link>
                 ))}
                 <ListItem>
-                    <SocialIcon url="https://www.linkedin.com/in/frank-wangma/"/>
+                    <SocialIcon url="https://www.linkedin.com/in/frank-wangma/" bgColor="#ffffff"/>
                 </ListItem>
                 <ListItem>
-                    <SocialIcon url="https://github.com/FrankWangma"/>
+                    <SocialIcon url="https://github.com/FrankWangma" bgColor="#ffffff"/>
+                </ListItem>
+                <ListItem>
+                    <SocialIcon url="https://www.facebook.com/frank.wangma.5/" bgColor="#ffffff"/>
                 </ListItem>
             </List>
         </Drawer>
