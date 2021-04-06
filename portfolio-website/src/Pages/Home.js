@@ -2,7 +2,7 @@ import React from 'react';
 import {Typography, Paper, Button, Grid} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
-
+import GetAppIcon from '@material-ui/icons/GetApp';
 
 const useStyles = makeStyles((theme) => ({
     root: {   
@@ -29,7 +29,7 @@ const Home = ()  => {
                 </Grid>
                 <Grid item xs='6'>
                     <Link to='/files/CV-Frank-Wang-Ma.pdf' target='_blank' download style={{ textDecoration: 'none' }}>
-                        <Button variant='contained'>Download CV</Button>
+                        <Button variant='contained' endIcon={<GetAppIcon />}>Download CV</Button>
                     </Link>
                 </Grid>
             </Grid>
