@@ -1,5 +1,5 @@
 import React from 'react';
-import {Typography, Paper, Button, Grid} from '@material-ui/core';
+import {Typography, Button, Grid} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import GetAppIcon from '@material-ui/icons/GetApp';
@@ -11,7 +11,6 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center',
         height: '100vh',
         width: "33vw",
-        marginLeft: '240px',
     },
     container: {
         margin: '20px',
