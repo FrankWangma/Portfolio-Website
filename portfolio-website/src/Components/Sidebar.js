@@ -22,7 +22,7 @@ const Sidebar = (props) => {
     const classes = useStyles();
       
     const drawerContent = (
-        <List >
+        <List onClick={props.handleDrawerToggle}>
             <ListItem> 
                 <Typography classes={{root: classes.Text}} variant="h5">Frank Wang Ma</Typography>
             </ListItem>
