@@ -1,6 +1,7 @@
 import React from 'react';
-import { Drawer, Hidden, List, ListItem, Typography} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Drawer, Hidden, List, Typography} from '@material-ui/core';
+import MuiListItem from "@material-ui/core/ListItem";
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { SocialIcon  } from 'react-social-icons'
 
@@ -16,32 +17,42 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
+const ListItemButton = withStyles({
+    root: {
+      "&:hover": {
+        backgroundColor: "#525252",
+        color: "white"
+      }
+    },
+    selected: {}
+  })(MuiListItem);
+
 
 
 const Sidebar = (props) => {
     const classes = useStyles();
       
     const drawerContent = (
-        <List onClick={props.handleDrawerToggle}>
-            <ListItem> 
+        <List onClick={props.isDrawerOpen? props.handleDrawerToggle : null}>
+            <MuiListItem> 
                 <Typography classes={{root: classes.Text}} variant="h5">Frank Wang Ma</Typography>
-            </ListItem>
+            </MuiListItem>
             {props.SidebarNames.map((text, index) => (
                 <Link to={props.Links[index]}>
-                    <ListItem button key={text}>
+                    <ListItemButton button key={text}>
                         <Typography classes={{root: classes.Text}}>{text}</Typography>
-                    </ListItem>
+                    </ListItemButton>
                 </Link>
             ))}
-            <ListItem>
+            <MuiListItem>
                 <SocialIcon url="https://www.linkedin.com/in/frank-wangma/" bgColor="#ffffff"/>
-            </ListItem>
-            <ListItem>
+            </MuiListItem>
+            <MuiListItem>
                 <SocialIcon url="https://github.com/FrankWangma" bgColor="#ffffff"/>
-            </ListItem>
-            <ListItem>
+            </MuiListItem>
+            <MuiListItem>
                 <SocialIcon url="https://www.facebook.com/frank.wangma.5/" bgColor="#ffffff"/>
-            </ListItem>
+            </MuiListItem>
         </List>
     )
 
