@@ -52,6 +52,8 @@ const Sidebar = (props) => {
                     variant='temporary'
                     classes={{paper: classes.MuiDrawer}}
                     anchor='left'
+                    open={props.isDrawerOpen}
+                    onClose={props.handleDrawerToggle}
                 >
                     {drawerContent}
                 </Drawer>
