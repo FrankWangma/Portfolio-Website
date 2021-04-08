@@ -1,6 +1,5 @@
 import React from 'react';
-import { Drawer, Hidden, List, Typography} from '@material-ui/core';
-import MuiListItem from "@material-ui/core/ListItem";
+import { Drawer, Hidden, List, ListItemIcon, ListItemText, Typography, ListItem} from '@material-ui/core';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { SocialIcon  } from 'react-social-icons'
@@ -15,17 +14,25 @@ const useStyles = makeStyles((theme) => ({
     Text: {
         color: "#ffffff"
     },
+    
+    Icon: {
+        color: "#ffffff"
+    },
+
+    SocialMedia: {
+        paddingLeft: 80
+    }
 }));
 
 const ListItemButton = withStyles({
     root: {
       "&:hover": {
         backgroundColor: "#525252",
-        color: "white"
-      }
+      },
+      color: "white"
     },
     selected: {}
-  })(MuiListItem);
+  })(ListItem);
 
 
 
@@ -33,27 +40,32 @@ const Sidebar = (props) => {
     const classes = useStyles();
       
     const drawerContent = (
-        <List onClick={props.isDrawerOpen? props.handleDrawerToggle : null}>
-            <MuiListItem> 
-                <Typography classes={{root: classes.Text}} variant="h5">Frank Wang Ma</Typography>
-            </MuiListItem>
-            {props.SidebarNames.map((text, index) => (
-                <Link to={props.Links[index]}>
-                    <ListItemButton button key={text}>
-                        <Typography classes={{root: classes.Text}}>{text}</Typography>
-                    </ListItemButton>
-                </Link>
-            ))}
-            <MuiListItem>
-                <SocialIcon url="https://www.linkedin.com/in/frank-wangma/" bgColor="#ffffff"/>
-            </MuiListItem>
-            <MuiListItem>
-                <SocialIcon url="https://github.com/FrankWangma" bgColor="#ffffff"/>
-            </MuiListItem>
-            <MuiListItem>
-                <SocialIcon url="https://www.facebook.com/frank.wangma.5/" bgColor="#ffffff"/>
-            </MuiListItem>
-        </List>
+        <div>
+            <List onClick={props.isDrawerOpen? props.handleDrawerToggle : null}>
+                <ListItem> 
+                    <Typography classes={{root: classes.Text}} variant="h5">Frank Wang Ma</Typography>
+                </ListItem>
+                {props.SidebarNames.map((text, index) => (
+                    <Link to={props.Links[index]}>
+                        <ListItemButton button key={text}>
+                            <ListItemIcon classes={{root: classes.Icon}}>{props.SidebarIcons[index]}</ListItemIcon>
+                            <ListItemText classes={{root: classes.Text}}>{text}</ListItemText>
+                        </ListItemButton>
+                    </Link>
+                ))}
+            </List>
+            <List>
+                <ListItem classes={{root: classes.SocialMedia}}>
+                    <SocialIcon url="https://www.linkedin.com/in/frank-wangma/" bgColor="#ffffff"/>
+                </ListItem>
+                <ListItem classes={{root: classes.SocialMedia}}>
+                    <SocialIcon url="https://github.com/FrankWangma" bgColor="#ffffff"/>
+                </ListItem>
+                <ListItem classes={{root: classes.SocialMedia}}>
+                    <SocialIcon url="https://www.facebook.com/frank.wangma.5/" bgColor="#ffffff"/>
+                </ListItem>
+            </List>
+        </div>
     )
 
     return (

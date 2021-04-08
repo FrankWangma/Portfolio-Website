@@ -10,7 +10,9 @@ import Home from './Pages/Home'
 import Sidebar from './Components/Sidebar';
 import MenuIcon from "@material-ui/icons/Menu";
 import IconButton from "@material-ui/core/IconButton";
-
+import AccountTreeIcon from '@material-ui/icons/AccountTree';
+import HomeIcon from '@material-ui/icons/Home';
+import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 
 const useStyles = makeStyles((theme) => ({
   menuButton: {
@@ -38,7 +40,7 @@ const App = () => {
 
   return (
     <Router>
-      <Sidebar SidebarNames={['Home', 'About Me', 'Projects']} Links={['/', '/about','/projects']} isDrawerOpen={isDrawerOpen} handleDrawerToggle={handleDrawerToggle}/>
+      <Sidebar SidebarNames={['Home', 'About Me', 'Projects']} Links={['/', '/about','/projects']}  SidebarIcons={[<HomeIcon />, <PermIdentityIcon />, <AccountTreeIcon />]} isDrawerOpen={isDrawerOpen} handleDrawerToggle={handleDrawerToggle}/>
       <div className={classes.offset}>
           <IconButton
             edge="start"
