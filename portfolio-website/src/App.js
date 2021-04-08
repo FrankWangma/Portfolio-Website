@@ -13,6 +13,8 @@ import IconButton from "@material-ui/core/IconButton";
 import AccountTreeIcon from '@material-ui/icons/AccountTree';
 import HomeIcon from '@material-ui/icons/Home';
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
+import About from './Pages/About';
+import Projects from './Pages/Projects';
 
 const useStyles = makeStyles((theme) => ({
   menuButton: {
@@ -53,10 +55,8 @@ const App = () => {
             />
           </IconButton>
         <Switch>
-          <Route path="/about">
-          </Route>
-          <Route path="/projects">
-          </Route>
+          <Route path="/about" component={About} />
+          <Route path="/projects" component={Projects}/>
           <Route path="/" component={Home} />
           <Route path="*" component={Home} />
         </Switch>
