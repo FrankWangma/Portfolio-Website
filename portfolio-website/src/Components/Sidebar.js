@@ -20,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
     SocialMedia: {
-        paddingLeft: 80
+        margin: 20
     }
 }));
 
@@ -54,17 +54,12 @@ const Sidebar = (props) => {
                     </Link>
                 ))}
             </List>
-            <List>
-                <ListItem classes={{root: classes.SocialMedia}}>
-                    <SocialIcon url="https://www.linkedin.com/in/frank-wangma/" bgColor="#ffffff"/>
-                </ListItem>
-                <ListItem classes={{root: classes.SocialMedia}}>
-                    <SocialIcon url="https://github.com/FrankWangma" bgColor="#ffffff"/>
-                </ListItem>
-                <ListItem classes={{root: classes.SocialMedia}}>
-                    <SocialIcon url="https://www.facebook.com/frank.wangma.5/" bgColor="#ffffff"/>
-                </ListItem>
-            </List>
+            
+            <div style={{margin: '20px'}}>
+                <SocialIcon style={{marginLeft: '10px'}} url="https://www.linkedin.com/in/frank-wangma/" bgColor="#ffffff"/>
+                <SocialIcon style={{marginLeft: '10px'}} url="https://github.com/FrankWangma" bgColor="#ffffff"/>
+                <SocialIcon style={{marginLeft: '10px'}} url="https://www.facebook.com/frank.wangma.5/" bgColor="#ffffff"/>
+            </div>
         </div>
     )
 
