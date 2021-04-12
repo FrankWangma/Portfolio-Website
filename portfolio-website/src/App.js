@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import {
   BrowserRouter as Router,
@@ -34,12 +34,24 @@ const useStyles = makeStyles((theme) => ({
 
 const App = () => {
   const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+  const [user, setUser] = useState(null)
   const classes = useStyles();
+
+  useEffect(() => {
+    fetch('https://gitconnected.com/v1/portfolio/frankwangma')
+      .then(res => res.json())
+      .then(user => {
+        setUser(user);
+      });
+  }, []);
 
   const handleDrawerToggle = () => {
     setIsDrawerOpen(!isDrawerOpen);
   }
-
+  
+  if(!user) {
+    return (<div />)
+  }
   return (
     <Router>
       <Sidebar SidebarNames={['Home', 'About Me', 'Projects']} Links={['/', '/about','/projects']}  SidebarIcons={[<HomeIcon />, <PermIdentityIcon />, <AccountTreeIcon />]} isDrawerOpen={isDrawerOpen} handleDrawerToggle={handleDrawerToggle}/>
@@ -55,7 +67,7 @@ const App = () => {
             />
           </IconButton>
         <Switch>
-          <Route path="/about" component={About} />
+          <Route path="/about" component={ () => <About user={user} />} />
           <Route path="/projects" component={Projects}/>
           <Route path="/" component={Home} />
           <Route path="*" component={Home} />
