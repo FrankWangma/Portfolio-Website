@@ -22,7 +22,6 @@ const About = ({user}) => {
             </div>
             <Typography variant='h3'>Education</Typography>
             <div>
-                {console.log(user)}
                 {user.education.map(education => (
                     <Chip label={education.institution}/>
                 ))}
