@@ -1,5 +1,6 @@
 import { Chip, Typography } from '@material-ui/core'
 import React from 'react'
+import WorkTimeline from '../Components/WorkTimeline'
 
 const About = ({user}) => {
     
@@ -14,18 +15,7 @@ const About = ({user}) => {
                     <Chip label={skill.name}/>
                 ))}
             </div>
-            <Typography variant='h3'>Work Experience</Typography>
-            <div>
-                {user.work.map(work => (
-                    <Chip label={work.name}/>
-                ))}
-            </div>
-            <Typography variant='h3'>Education</Typography>
-            <div>
-                {user.education.map(education => (
-                    <Chip label={education.institution}/>
-                ))}
-            </div>
+            <WorkTimeline user={user}/>
         </div>
     )
 }
