@@ -1,5 +1,5 @@
 import React from 'react';
-import { Drawer, Hidden, List, ListItemIcon, ListItemText, Typography, ListItem} from '@material-ui/core';
+import { Drawer, Hidden, List, ListItemIcon, ListItemText, Typography, ListItem, Grid, Divider} from '@material-ui/core';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { SocialIcon  } from 'react-social-icons'
@@ -20,8 +20,14 @@ const useStyles = makeStyles((theme) => ({
     },
 
     SocialMedia: {
-        margin: 20
-    }
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+
+    divider: {
+        background: '#fff',
+    },
 }));
 
 const ListItemButton = withStyles({
@@ -46,20 +52,21 @@ const Sidebar = (props) => {
                     <Typography classes={{root: classes.Text}} variant="h5">Frank Wang Ma</Typography>
                 </ListItem>
                 {props.SidebarNames.map((text, index) => (
-                    <Link to={props.Links[index]}>
+                    <div>
+                    <Link to={props.Links[index]} style={{ textDecoration: 'none' }}>
                         <ListItemButton button key={text}>
                             <ListItemIcon classes={{root: classes.Icon}}>{props.SidebarIcons[index]}</ListItemIcon>
                             <ListItemText classes={{root: classes.Text}}>{text}</ListItemText>
                         </ListItemButton>
                     </Link>
+                    </div>
                 ))}
             </List>
-            
-            <div style={{margin: '20px'}}>
-                <SocialIcon style={{marginLeft: '10px'}} url="https://www.linkedin.com/in/frank-wangma/" bgColor="#ffffff"/>
-                <SocialIcon style={{marginLeft: '10px'}} url="https://github.com/FrankWangma" bgColor="#ffffff"/>
-                <SocialIcon style={{marginLeft: '10px'}} url="https://www.facebook.com/frank.wangma.5/" bgColor="#ffffff"/>
-            </div>
+            <Divider classes={{root: classes.divider}} variant="middle" />
+            <Grid container>  {/* Smaller icons, with a divider */}
+                    <SocialIcon style={{marginLeft: '10px'}} url="https://www.linkedin.com/in/frank-wangma/" bgColor="#ffffff"/>
+                    <SocialIcon style={{marginLeft: '10px'}} url="https://github.com/FrankWangma" bgColor="#ffffff"/>
+            </Grid>
         </div>
     )
 
