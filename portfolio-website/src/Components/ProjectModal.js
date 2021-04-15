@@ -1,6 +1,7 @@
 import React from 'react'
-import { Dialog, DialogTitle, DialogContent, DialogContentText, Chip } from '@material-ui/core';
+import { Dialog, DialogTitle, DialogContent, DialogContentText, Chip, DialogActions, Button, IconButton, Box } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
+import CloseIcon from '@material-ui/icons/Close';
 
 const useStyles = makeStyles((theme) => ({
     root: {   
@@ -12,10 +13,20 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: project.images[0].resolutions.desktop.width
     }),
 
+    closeButton: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+    }
+
   }));
 
 const ProjectModal = ({open, handleClose, project}) => {
     const classes = useStyles(project);
+
+    const handleOpenLink = () => {
+        window.open(project.githubUrl, '_blank');
+    }
     return (
         <Dialog 
             className={classes.root}
@@ -25,7 +36,14 @@ const ProjectModal = ({open, handleClose, project}) => {
             maxWidth="xl"
         >
             <DialogTitle>
-                {project.name}
+               <Box display="flex" alignItems="center">
+                    <Box flexGrow={1} >{project.name}</Box>
+                    <Box>
+                        <IconButton onClick={handleClose}>
+                            <CloseIcon />
+                        </IconButton>
+                    </Box>
+            </Box>
             </DialogTitle>
             <DialogContent>
                 <img src={project.images[0].resolutions.desktop.url} alt={''} />
@@ -42,6 +60,11 @@ const ProjectModal = ({open, handleClose, project}) => {
                     <Chip label={library}/>
                 ))}
             </DialogContent>
+            <DialogActions>
+                <Button onClick={handleOpenLink}>
+                    Open on GitHub
+                </Button>
+            </DialogActions>
         </Dialog>
     )
 }
