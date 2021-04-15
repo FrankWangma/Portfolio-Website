@@ -9,12 +9,10 @@ const useStyles = makeStyles(() => ({
     },
     root: {
         maxWidth: 500,
-        height: 'auto'
+        height: '100%',
     },
-    link: {
-        display: 'block',
-        maxWidth: 500,
-        textDecoration: 'none'
+    clickable: {
+        height: '100%',
     },
     image: {
         height: 'auto',
@@ -45,24 +43,24 @@ const Projects = ({user}) => {
                 container
                 direction="row"
                 justify="center"
-                alignItems="flex-start"
+                alignItems="stretch"
             >
                 {user.projects.map(project => (
                     <Grid item xs
                     justify="center">
-                        <Card className={classes.root}>
-                            <CardActionArea onClick={() => expandCard(project)}>
-                                <CardHeader title={project.name} />
-                                <CardMedia>
-                                    <img className={classes.image} src={project.images[0].resolutions.mobile.url} alt={''} />
-                                </CardMedia>
-                                <CardContent>
-                                    <Typography variant="body2" color="textSecondary" component="p">
-                                        {project.summary}
-                                    </Typography>
-                                </CardContent>
-                            </CardActionArea>
-                        </Card>
+                        <CardActionArea className={classes.clickable} onClick={() => expandCard(project)}>
+                            <Card className={classes.root}>
+                                    <CardHeader title={project.name} />
+                                    <CardMedia>
+                                        <img className={classes.image} src={project.images[0].resolutions.mobile.url} alt={''} />
+                                    </CardMedia>
+                                    <CardContent>
+                                        <Typography variant="body2" color="textSecondary" component="p">
+                                            {project.summary}
+                                        </Typography>
+                                    </CardContent>
+                            </Card>
+                        </CardActionArea>
                     </Grid>
                 ))}
             </Grid>
