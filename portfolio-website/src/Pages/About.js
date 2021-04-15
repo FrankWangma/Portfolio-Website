@@ -1,5 +1,6 @@
 import { Chip, Typography } from '@material-ui/core'
 import React from 'react'
+import { CSharpIcon, CssIcon, JavaIcon, JSIcon, NodejsIcon, ReactIcon } from '../Components/Icons'
 import WorkTimeline from '../Components/WorkTimeline'
 
 const About = ({user}) => {
@@ -11,9 +12,12 @@ const About = ({user}) => {
             
             <Typography variant='h3'>Skills</Typography>
             <div>
-                {user.skills.map(skill => (
-                    <Chip label={skill.name}/>
-                ))}
+                <CSharpIcon />
+                <JavaIcon />
+                <JSIcon />
+                <ReactIcon />
+                <CssIcon />
+                <NodejsIcon />
             </div>
             <WorkTimeline user={user}/>
         </div>
