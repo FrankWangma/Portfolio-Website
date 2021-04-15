@@ -2,41 +2,34 @@ import React from 'react';
 import { Timeline, TimelineItem }  from 'vertical-timeline-component-for-react';
 
 const WorkTimeline = ({user}) => {
-    const timelineObjects = user.work.concat(user.education)
-    timelineObjects.sort((d1, d2) => new Date(d2.endDate).getTime() - new Date(d1.endDate).getTime());
-    console.log(timelineObjects)
+    
+    const workDescription = (summary) => {
+        return (
+            summary.toString().split('-').map(paragraph => (
+                <p>
+                    {paragraph}
+                </p>
+            ))
+        )
+    }
     return (
         <Timeline  lineColor={'#fff'}>
-            {timelineObjects.map((object, index) => {
+            {user.work.map((work, index) => {
                 return (
                 <TimelineItem
                     key={index}
-                    dateText={object.startDate + " - " + object.endDate}
-                    style={{ color: '#e86971' }}
+                    dateText={work.startDate + " - " + work.endDate}
+                    style={{ color: '#695E93' }}
+                    dateInnerStyle={{ background: '#695E93', color: '#fff' }}
+                    bodyContainerStyle={{
+                        padding: '20px',
+                        borderRadius: '8px',
+                        color: '#fff',
+                      }}
                 >
-                    <h3>Title, Company</h3>
-                    <h4>Subtitle</h4>
-                    <p>
-                    Est incididunt sint eu minim dolore mollit velit velit commodo ex nulla
-                    exercitation. Veniam velit adipisicing anim excepteur nostrud magna
-                    nostrud aliqua dolor. Sunt aute est duis ut nulla officia irure
-                    reprehenderit laborum fugiat dolore in elit. Adipisicing do qui duis Lorem
-                    est.
-                    </p>
-                    <p>
-                    Est incididunt sint eu minim dolore mollit velit velit commodo ex nulla
-                    exercitation. Veniam velit adipisicing anim excepteur nostrud magna
-                    nostrud aliqua dolor. Sunt aute est duis ut nulla officia irure
-                    reprehenderit laborum fugiat dolore in elit. Adipisicing do qui duis Lorem
-                    est.
-                    </p>
-                    <p>
-                    Est incididunt sint eu minim dolore mollit velit velit commodo ex nulla
-                    exercitation. Veniam velit adipisicing anim excepteur nostrud magna
-                    nostrud aliqua dolor. Sunt aute est duis ut nulla officia irure
-                    reprehenderit laborum fugiat dolore in elit. Adipisicing do qui duis Lorem
-                    est.
-                    </p>
+                    <h3>{work.company}</h3>
+                    <h4>{work.position}</h4>
+                    {workDescription(work.summary)}
                 </TimelineItem>
             )})}
               
