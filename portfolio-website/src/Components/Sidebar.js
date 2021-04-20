@@ -63,9 +63,12 @@ const Sidebar = (props) => {
                 ))}
             </List>
             <Divider classes={{root: classes.divider}} variant="middle" />
-            <Grid container>  {/* Smaller icons, with a divider */}
-                    <SocialIcon style={{marginLeft: '10px'}} url="https://www.linkedin.com/in/frank-wangma/" bgColor="#ffffff"/>
-                    <SocialIcon style={{marginLeft: '10px'}} url="https://github.com/FrankWangma" bgColor="#ffffff"/>
+            <Grid container
+             direction="row"
+             justify="center"
+             alignItems="stretch">
+                    <SocialIcon style={{margin: '20px 0 0 10px', height: 35, width: 35}} url="https://www.linkedin.com/in/frank-wangma/" bgColor="#ffffff"/>
+                    <SocialIcon style={{margin: '20px 0 0 10px', height: 35, width: 35}} url="https://github.com/FrankWangma" bgColor="#ffffff"/>
             </Grid>
         </div>
     )
