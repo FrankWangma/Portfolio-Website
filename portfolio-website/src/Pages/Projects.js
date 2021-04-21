@@ -13,6 +13,7 @@ const useStyles = makeStyles(() => ({
     },
     clickable: {
         height: '100%',
+        maxWidth: 500,
     },
     image: {
         height: 'auto',
