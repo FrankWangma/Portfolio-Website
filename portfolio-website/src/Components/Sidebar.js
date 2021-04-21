@@ -28,6 +28,10 @@ const useStyles = makeStyles((theme) => ({
     divider: {
         background: '#fff',
     },
+
+    link: {
+        color: '#fff'
+    }
 }));
 
 const ListItemButton = withStyles({
@@ -49,7 +53,13 @@ const Sidebar = (props) => {
         <div>
             <List onClick={props.isDrawerOpen? props.handleDrawerToggle : null}>
                 <ListItem> 
-                    <Typography classes={{root: classes.Text}} variant="h5">Frank Wang Ma</Typography>
+                    <Typography classes={{root: classes.Text}} variant="h5"><b>Frank Wang Ma</b></Typography>
+                </ListItem>
+                <ListItem> 
+                    <Typography inline classes={{root: classes.Text}} variant="subtitle">
+                        Contact me at: {"\n"}
+                        <a className={classes.link}href='mailto:frankwangma@gmail.com' target='_blank' rel="noreferrer">frankwangma@gmail.com</a>
+                    </Typography>
                 </ListItem>
                 {props.SidebarNames.map((text, index) => (
                     <div>
