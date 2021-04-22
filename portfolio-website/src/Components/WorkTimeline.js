@@ -1,5 +1,6 @@
 import React from 'react';
-import { Timeline, TimelineItem }  from 'vertical-timeline-component-for-react';
+import { VerticalTimeline, VerticalTimelineElement }  from 'react-vertical-timeline-component';
+import 'react-vertical-timeline-component/style.min.css';
 
 const WorkTimeline = ({user}) => {
     
@@ -13,28 +14,27 @@ const WorkTimeline = ({user}) => {
         )
     }
     return (
-        <Timeline  lineColor={'#fff'}>
+        <VerticalTimeline>
             {user.work.map((work, index) => {
+                const startDate = new Date(work.startDate).toLocaleString('default', { month: 'long', year: 'numeric' });
+                const endDate = new Date(work.endDate).toLocaleString('default', { month: 'long', year: 'numeric' });
+
                 return (
-                <TimelineItem
-                    key={index}
-                    dateText={work.startDate + " - " + work.endDate}
-                    style={{ color: '#695E93' }}
-                    dateInnerStyle={{ background: '#695E93', color: '#fff' }}
-                    bodyContainerStyle={{
-                        padding: '20px',
-                        borderRadius: '8px',
-                        color: '#fff',
-                      }}
+                <VerticalTimelineElement
+                    className="vertical-timeline-element--work"
+                    date={ startDate + " - " + endDate }
+                    contentStyle={{ background: '#927fbf', color: '#fff' }}
+                    contentArrowStyle={{ borderRight: '7px solid  #927fbf' }}
+                    iconStyle={{ background: '#4f3b78', color: '#fff' }}
                 >
-                    <h3>{work.company}</h3>
-                    <h4>{work.position}</h4>
+                    <h3 className="vertical-timeline-element-title">{work.company}</h3>
+                    <h4 className="vertical-timeline-element-subtitle">{work.position}</h4>
                     {workDescription(work.summary)}
-                </TimelineItem>
+                </VerticalTimelineElement>
             )})}
               
 
-        </Timeline>
+        </VerticalTimeline>
     )
 }
 

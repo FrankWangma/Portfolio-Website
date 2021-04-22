@@ -9,6 +9,13 @@ const useStyles = makeStyles( () => ({
         height: 60,
         margin: 20,
         
+    },
+    timeline: {
+        margin: 50
+    },
+    text: {
+        display: 'flex',
+        justifyContent: 'center'
     }
 }))
 
@@ -17,10 +24,10 @@ const About = ({user}) => {
 
     return (
         <div>
-            <Typography variant='h1'>Who Am I?</Typography>
-            <Typography>I am a Software Engineer who has recently graduated from <b>The University of Auckland</b> with first class honours.</Typography>
+            <Typography variant='h1' className={classes.text}>Who Am I?</Typography>
+            <Typography className={classes.text}>I am a Software Engineer who has recently graduated from <b>The University of Auckland</b> with first class honours.</Typography>
             
-            <Typography variant='h3'>Skills</Typography>
+            <Typography variant='h3' className={classes.text}>Skills</Typography>
             <Grid 
                 container
                 direction="row"
@@ -34,7 +41,9 @@ const About = ({user}) => {
                 <div className={classes.icon}> <CssIcon /> <Typography align='center'>CSS</Typography> </div>
                 <div className={classes.icon}> <NodejsIcon /> <Typography align='center'>NodeJS</Typography></div>
             </Grid>
-            <WorkTimeline user={user}/>
+            <div className={classes.timeline}>
+                <WorkTimeline user={user}/>
+            </div>
         </div>
     )
 }
