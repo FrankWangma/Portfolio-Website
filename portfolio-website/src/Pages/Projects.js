@@ -20,7 +20,10 @@ const useStyles = makeStyles(() => ({
         maxHeight: '300px',
         width: 'auto',
         maxWidth: '500px',
-    }
+    },
+    title: {
+        backgroundColor: '#927fbf',
+    },
 }));
 
 const Projects = ({user}) => {
@@ -51,7 +54,7 @@ const Projects = ({user}) => {
                     justify="center">
                         <CardActionArea className={classes.clickable} onClick={() => expandCard(project)}>
                             <Card className={classes.root}>
-                                    <CardHeader title={project.name} />
+                                    <CardHeader className={classes.title} title={project.name} />
                                     <CardMedia>
                                         <img className={classes.image} src={project.images[0].resolutions.mobile.url} alt={''} />
                                     </CardMedia>

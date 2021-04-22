@@ -17,6 +17,9 @@ const useStyles = makeStyles((theme) => ({
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
+    },
+    title: {
+        backgroundColor: '#927fbf'
     }
 
   }));
@@ -35,7 +38,7 @@ const ProjectModal = ({open, handleClose, project}) => {
             fullWidth
             maxWidth="xl"
         >
-            <DialogTitle>
+            <DialogTitle className={classes.title}>
                <Box display="flex" alignItems="center">
                     <Box flexGrow={1} >{project.name}</Box>
                     <Box>

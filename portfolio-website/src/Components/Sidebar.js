@@ -12,7 +12,8 @@ const useStyles = makeStyles((theme) => ({
     },
 
     Text: {
-        color: "#ffffff"
+        color: "#ffffff",
+        alignContent: "center"
     },
     
     Icon: {
@@ -52,11 +53,11 @@ const Sidebar = (props) => {
     const drawerContent = (
         <div>
             <List onClick={props.isDrawerOpen? props.handleDrawerToggle : null}>
-                <ListItem> 
-                    <Typography classes={{root: classes.Text}} variant="h5"><b>Frank Wang Ma</b></Typography>
+                <ListItem style={{display:'flex', justifyContent:'center'}}> 
+                    <Typography classes={{root: classes.Text}} variant="h5" >Frank Wang Ma</Typography>
                 </ListItem>
                 <ListItem> 
-                    <Typography inline classes={{root: classes.Text}} variant="subtitle">
+                    <Typography classes={{root: classes.Text}} variant="subtitle" align='center'>
                         Contact me at: {"\n"}
                         <a className={classes.link}href='mailto:frankwangma@gmail.com' target='_blank' rel="noreferrer">frankwangma@gmail.com</a>
                     </Typography>
