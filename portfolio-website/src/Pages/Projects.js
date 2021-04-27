@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Card, CardActionArea, CardHeader, CardMedia, CardContent, Grid, makeStyles, Typography } from '@material-ui/core'
+import { Card, CardActionArea, CardHeader, CardMedia, CardContent, Grid, makeStyles, Typography, Grow } from '@material-ui/core'
 import ProjectModal from '../Components/ProjectModal';
 
 
@@ -31,6 +31,8 @@ const Projects = ({user}) => {
     const [selectedProject, setSelectedProject] = useState(null);
     const [openModal, setOpenModal] = useState(false);
 
+    let timeout = 300;
+
     const expandCard = (project) => {
         setSelectedProject(project);
         setOpenModal(true);
@@ -49,22 +51,24 @@ const Projects = ({user}) => {
                 justify="center"
                 alignItems="stretch"
             >
-                {user.projects.map(project => (
+                {user.projects.map((project, index) => (
                     <Grid item xs
                     justify="center">
-                        <CardActionArea className={classes.clickable} onClick={() => expandCard(project)}>
-                            <Card className={classes.root}>
-                                    <CardHeader className={classes.title} title={project.name} />
-                                    <CardMedia>
-                                        <img className={classes.image} src={project.images[0].resolutions.mobile.url} alt={''} />
-                                    </CardMedia>
-                                    <CardContent>
-                                        <Typography variant="body2" color="textSecondary" component="p">
-                                            {project.summary}
-                                        </Typography>
-                                    </CardContent>
-                            </Card>
-                        </CardActionArea>
+                        <Grow in='true' timeout={timeout * (index + 1)}>
+                            <CardActionArea className={classes.clickable} onClick={() => expandCard(project)}>
+                                <Card className={classes.root}>
+                                        <CardHeader className={classes.title} title={project.name} />
+                                        <CardMedia>
+                                            <img className={classes.image} src={project.images[0].resolutions.mobile.url} alt={''} />
+                                        </CardMedia>
+                                        <CardContent>
+                                            <Typography variant="body2" color="textSecondary" component="p">
+                                                {project.summary}
+                                            </Typography>
+                                        </CardContent>
+                                </Card>
+                            </CardActionArea>
+                        </Grow>
                     </Grid>
                 ))}
             </Grid>
