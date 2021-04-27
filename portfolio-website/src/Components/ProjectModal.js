@@ -20,6 +20,9 @@ const useStyles = makeStyles((theme) => ({
     },
     title: {
         backgroundColor: '#927fbf'
+    },
+    button: {
+        color: '#927fbf'
     }
 
   }));
@@ -48,7 +51,7 @@ const ProjectModal = ({open, handleClose, project}) => {
                     </Box>
             </Box>
             </DialogTitle>
-            <DialogContent>
+            <DialogContent dividers>
                 <img src={project.images[0].resolutions.desktop.url} alt={''} />
                 <DialogContentText className={classes.text}>
                     {project.summary}
@@ -64,7 +67,7 @@ const ProjectModal = ({open, handleClose, project}) => {
                 ))}
             </DialogContent>
             <DialogActions>
-                <Button onClick={handleOpenLink}>
+                <Button className={classes.button} size='large' onClick={handleOpenLink}>
                     Open on GitHub
                 </Button>
             </DialogActions>
