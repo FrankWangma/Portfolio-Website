@@ -1,5 +1,5 @@
-import React from 'react';
-import { Grid, Grow, makeStyles, Slide, Typography } from '@material-ui/core'
+import React, {useState, useEffect} from 'react';
+import { CircularProgress, Grid, Grow, makeStyles, Slide, Typography } from '@material-ui/core'
 import { CSharpIcon, CssIcon, JavaIcon, JSIcon, NodejsIcon, ReactIcon } from '../Components/Icons'
 import WorkTimeline from '../Components/WorkTimeline'
 
@@ -16,10 +16,26 @@ const useStyles = makeStyles( () => ({
     text: {
         display: 'flex',
         justifyContent: 'center'
+    },
+    loading: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100vh',
     }
 }))
 
-const About = ({user}) => {
+const About = () => {
+
+    const [user, setUser] = useState(null)
+
+    useEffect(() => {
+      fetch('https://gitconnected.com/v1/portfolio/frankwangma')
+        .then(res => res.json())
+        .then(user => {
+          setUser(user);
+        });
+    }, []);
 
     let timeout = 200
 
@@ -27,9 +43,16 @@ const About = ({user}) => {
     const DevIcons = [<CSharpIcon />, <JavaIcon />, <JSIcon />, <ReactIcon />, <CssIcon />, <NodejsIcon />]
     const DevNames = ["C Sharp", "Java", "Javascript", "React", "CSS", "NodeJS"]
 
+    if(user == null) {
+        return (
+        <div className={classes.loading}>
+            <CircularProgress size={100} />
+        </div>)
+    }
+        
     return (
         <div>
-            <Grow in='true'>
+            <Grow in={true}>
                 <div>
                     <Typography variant='h1' className={classes.text}>Who Am I?</Typography>
                     <Typography className={classes.text}>I am a Software Engineer who has recently graduated from <b>The University of Auckland</b> with first class honours.</Typography>
@@ -44,7 +67,7 @@ const About = ({user}) => {
                 alignItems="stretch"
             >
                 {DevIcons.map((icon, index) => (
-                    <Slide in='true' direction='down' timeout={timeout * (index + 1)}>
+                    <Slide in={true} direction='down' timeout={timeout * (index + 1)}>
                         <div className={classes.icon}>{icon}<Typography align='center'>{DevNames[index]}</Typography></div>
                     </Slide>
                 ))}

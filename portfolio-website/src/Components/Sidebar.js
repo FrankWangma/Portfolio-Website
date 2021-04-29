@@ -1,5 +1,5 @@
 import React from 'react';
-import { Drawer, Hidden, List, ListItemIcon, ListItemText, Typography, ListItem, Grid, Divider} from '@material-ui/core';
+import { Drawer, Hidden, List, ListItemIcon, ListItemText, Typography, ListItem, Grid, Divider, Slide} from '@material-ui/core';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { SocialIcon  } from 'react-social-icons'
@@ -53,22 +53,28 @@ const Sidebar = (props) => {
     const drawerContent = (
         <div>
             <List onClick={props.isDrawerOpen? props.handleDrawerToggle : null}>
-                <ListItem style={{display:'flex', justifyContent:'center'}}> 
-                    <Typography classes={{root: classes.Text}} variant="h5" >Frank Wang Ma</Typography>
-                </ListItem>
-                <ListItem> 
-                    <Typography classes={{root: classes.Text}} variant="subtitle" align='center'>
-                        Contact me at: {"\n"}
-                        <a className={classes.link}href='mailto:frankwangma@gmail.com' target='_blank' rel="noreferrer">frankwangma@gmail.com</a>
-                    </Typography>
-                </ListItem>
+                <Slide in={true} direction='right' timeout={200} >
+                    <ListItem style={{display:'flex', justifyContent:'center'}} key='name'> 
+                        <Typography classes={{root: classes.Text}} variant="h5" >Frank Wang Ma</Typography>
+                    </ListItem>
+                </Slide>
+                <Slide in={true} direction='right' timeout={400}>
+                    <ListItem> 
+                        <Typography classes={{root: classes.Text}} variant="subtitle1" align='center' key='contact'>
+                            Contact me at: {"\n"}
+                            <a className={classes.link}href='mailto:frankwangma@gmail.com' target='_blank' rel="noreferrer">frankwangma@gmail.com</a>
+                        </Typography>
+                    </ListItem>
+                </Slide>
                 {props.SidebarNames.map((text, index) => (
-                    <div>
+                    <div key={index}>
                     <Link to={props.Links[index]} style={{ textDecoration: 'none' }}>
-                        <ListItemButton button key={text}>
-                            <ListItemIcon classes={{root: classes.Icon}}>{props.SidebarIcons[index]}</ListItemIcon>
-                            <ListItemText classes={{root: classes.Text}}>{text}</ListItemText>
-                        </ListItemButton>
+                        <Slide in={true} direction='right' timeout={200 * (index + 3)}>
+                            <ListItemButton button key={index}>
+                                <ListItemIcon classes={{root: classes.Icon}}>{props.SidebarIcons[index]}</ListItemIcon>
+                                <ListItemText classes={{root: classes.Text}}>{text}</ListItemText>
+                            </ListItemButton>
+                        </Slide>
                     </Link>
                     </div>
                 ))}

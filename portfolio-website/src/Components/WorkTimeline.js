@@ -6,8 +6,8 @@ const WorkTimeline = ({user}) => {
     
     const workDescription = (summary) => {
         return (
-            summary.toString().split('-').map(paragraph => (
-                <p>
+            summary.toString().split('-').map((paragraph, index) => (
+                <p key={index}>
                     {paragraph}
                 </p>
             ))
@@ -26,6 +26,7 @@ const WorkTimeline = ({user}) => {
                     contentStyle={{ background: '#927fbf', color: '#fff' }}
                     contentArrowStyle={{ borderRight: '7px solid  #927fbf' }}
                     iconStyle={{ background: '#4f3b78', color: '#fff' }}
+                    key={index}
                 >
                     <h3 className="vertical-timeline-element-title">{work.company}</h3>
                     <h4 className="vertical-timeline-element-subtitle">{work.position}</h4>

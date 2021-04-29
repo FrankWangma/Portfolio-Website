@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Card, CardActionArea, CardHeader, CardMedia, CardContent, Grid, makeStyles, Typography, Grow } from '@material-ui/core'
+import React, { useState, useEffect } from 'react'
+import { Card, CardActionArea, CardHeader, CardMedia, CardContent, Grid, makeStyles, Typography, Grow, CircularProgress } from '@material-ui/core'
 import ProjectModal from '../Components/ProjectModal';
 
 
@@ -24,12 +24,27 @@ const useStyles = makeStyles(() => ({
     title: {
         backgroundColor: '#927fbf',
     },
+    loading: {
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        height: '100vh',
+    }
 }));
 
-const Projects = ({user}) => {
+const Projects = () => {
     const classes = useStyles();
     const [selectedProject, setSelectedProject] = useState(null);
     const [openModal, setOpenModal] = useState(false);
+    const [user, setUser] = useState(null)
+
+    useEffect(() => {
+      fetch('https://gitconnected.com/v1/portfolio/frankwangma')
+        .then(res => res.json())
+        .then(user => {
+          setUser(user);
+        });
+    }, []);
 
     let timeout = 300;
 
@@ -42,6 +57,13 @@ const Projects = ({user}) => {
         setOpenModal(false);
     }
 
+    if(user == null) {
+        return (
+            <div className={classes.loading}>
+                <CircularProgress size={100}/>
+            </div>    
+        )
+    }
     return ( 
         <div className={classes.parent}>
             <Typography variant='h3'>My Projects</Typography>
@@ -50,11 +72,12 @@ const Projects = ({user}) => {
                 direction="row"
                 justify="center"
                 alignItems="stretch"
+                spacing={3}
             >
                 {user.projects.map((project, index) => (
                     <Grid item xs
                     justify="center">
-                        <Grow in='true' timeout={timeout * (index + 1)}>
+                        <Grow in={true} timeout={timeout * (index + 1)}>
                             <CardActionArea className={classes.clickable} onClick={() => expandCard(project)}>
                                 <Card className={classes.root}>
                                         <CardHeader className={classes.title} title={project.name} />

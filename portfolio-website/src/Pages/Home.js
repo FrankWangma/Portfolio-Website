@@ -25,12 +25,12 @@ const Home = ()  => {
         <div className={classes.root}>
             <Grid container className={classes.container}>
                 <Grid item xs='12'>
-                    <Slide in='true' direction='right' timeout={500}>
+                    <Slide in={true} direction='right' timeout={500}>
                         <Typography variant='h1'>Hi! I am Frank!</Typography>
                     </Slide>
                 </Grid>
                 
-                <Slide in='true' direction='right' timeout={500}>
+                <Slide in={true} direction='right' timeout={500}>
                 <Grid item xs='6'>
                     <Link to='/files/CV-Frank-Wang-Ma.pdf' target='_blank' download style={{ textDecoration: 'none' }}>
                         <Button variant='contained' endIcon={<GetAppIcon />}>Download CV</Button>
