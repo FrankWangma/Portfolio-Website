@@ -1,5 +1,5 @@
 import React from 'react'
-import { Dialog, DialogTitle, DialogContent, DialogContentText, Chip, DialogActions, Button, IconButton, Box } from '@material-ui/core';
+import { Dialog, DialogTitle, DialogContent, DialogContentText, Chip, DialogActions, Button, IconButton, Box, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import CloseIcon from '@material-ui/icons/Close';
 
@@ -10,8 +10,14 @@ const useStyles = makeStyles((theme) => ({
         justifyContent: 'center',
     },
     text: project => ({
-        maxWidth: project.images[0].resolutions.desktop.width
+        maxWidth: project.images[0].resolutions.desktop.width,
+        color: '#FFFFFF',
+        opacity: '60%',
     }),
+
+    titleText: {
+        color: '#FFFFFF',
+    },
 
     closeButton: {
         display: 'flex',
@@ -23,6 +29,12 @@ const useStyles = makeStyles((theme) => ({
     },
     button: {
         color: '#927fbf'
+    },
+    dialogContent: {
+        backgroundColor: '#2b2b2b',
+    },
+    chip: {
+        backgroundColor: '#927fbf',
     }
 
   }));
@@ -43,7 +55,7 @@ const ProjectModal = ({open, handleClose, project}) => {
         >
             <DialogTitle className={classes.title}>
                <Box display="flex" alignItems="center">
-                    <Box flexGrow={1} >{project.name}</Box>
+                    <Box flexGrow={1} ><Typography className={classes.titleText} variant='h4'>{project.name}</Typography></Box>
                     <Box>
                         <IconButton onClick={handleClose}>
                             <CloseIcon />
@@ -51,7 +63,7 @@ const ProjectModal = ({open, handleClose, project}) => {
                     </Box>
             </Box>
             </DialogTitle>
-            <DialogContent dividers>
+            <DialogContent className={classes.dialogContent} dividers>
                 <img src={project.images[0].resolutions.desktop.url} alt={''} />
                 <DialogContentText className={classes.text}>
                     {project.summary}
@@ -60,13 +72,13 @@ const ProjectModal = ({open, handleClose, project}) => {
                     {project.description}
                 </DialogContentText>
                 {project.languages.map(language => (
-                    <Chip label={language}/>
+                    <Chip className={classes.chip} label={language}/>
                 ))}
                 {project.libraries.map(library => (
-                    <Chip label={library}/>
+                    <Chip className={classes.chip}  label={library}/>
                 ))}
             </DialogContent>
-            <DialogActions>
+            <DialogActions className={classes.dialogContent}>
                 <Button className={classes.button} size='large' onClick={handleOpenLink}>
                     Open on GitHub
                 </Button>

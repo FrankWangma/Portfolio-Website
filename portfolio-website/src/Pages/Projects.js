@@ -1,39 +1,53 @@
 import React, { useState, useEffect } from 'react'
-import { Card, CardActionArea, CardHeader, CardMedia, CardContent, Grid, makeStyles, Typography, Grow, CircularProgress } from '@material-ui/core'
+import { Card, CardActionArea, CardHeader, CardMedia, CardContent, Grid, makeStyles, Typography, Grow, CircularProgress, CardActions, Button } from '@material-ui/core'
 import ProjectModal from '../Components/ProjectModal';
 
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
     parent: {
         margin: '5%'
     },
     root: {
         maxWidth: 500,
         height: '100%',
+        backgroundColor: '#2b2b2b',
     },
     clickable: {
         height: '100%',
         maxWidth: 500,
     },
     image: {
-        height: 'auto',
-        maxHeight: '300px',
+        height: ({largestHeight}) => largestHeight,
         width: 'auto',
         maxWidth: '500px',
     },
     title: {
         backgroundColor: '#927fbf',
+        color: '#FFFFFF'
     },
     loading: {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         height: '100vh',
+    },
+    text: {
+        color: '#FFFFFF',
+        opacity: '60%',
+    },
+    cardActions: {
+        display: 'flex'
+    },
+    button: {
+        color: '#927fbf',
+        '&:hover': {
+            backgroundColor: "#525252",
+          },
     }
+
 }));
 
 const Projects = () => {
-    const classes = useStyles();
     const [selectedProject, setSelectedProject] = useState(null);
     const [openModal, setOpenModal] = useState(false);
     const [user, setUser] = useState(null)
@@ -45,7 +59,19 @@ const Projects = () => {
           setUser(user);
         });
     }, []);
-
+    
+    let largestHeight = 0;
+    if(user) {
+        user.projects.map((project) => {
+            const imageResolution = project.images[0].resolutions.mobile.height
+            if ( imageResolution > largestHeight) {
+                largestHeight = imageResolution;
+            }
+            return (null);
+        })
+    }
+    
+    const classes = useStyles({largestHeight});
     let timeout = 300;
 
     const expandCard = (project) => {
@@ -57,6 +83,11 @@ const Projects = () => {
         setOpenModal(false);
     }
 
+    const handleOpenLink = (project) => {
+        window.open(project.githubUrl, '_blank');
+    }
+
+
     if(user == null) {
         return (
             <div className={classes.loading}>
@@ -64,6 +95,7 @@ const Projects = () => {
             </div>    
         )
     }
+
     return ( 
         <div className={classes.parent}>
             <Typography variant='h3'>My Projects</Typography>
@@ -85,10 +117,15 @@ const Projects = () => {
                                             <img className={classes.image} src={project.images[0].resolutions.mobile.url} alt={''} />
                                         </CardMedia>
                                         <CardContent>
-                                            <Typography variant="body2" color="textSecondary" component="p">
+                                            <Typography variant="body2" color="textSecondary" component="p" className={classes.text}>
                                                 {project.summary}
                                             </Typography>
                                         </CardContent>
+                                        <CardActions className={classes.cardActions}>
+                                            <Button className={classes.button} size='large' onClick={() => handleOpenLink(project)}>
+                                                Open on GitHub
+                                            </Button>
+                                        </CardActions>
                                 </Card>
                             </CardActionArea>
                         </Grow>
