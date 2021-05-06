@@ -13,6 +13,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import PersonIcon from '@material-ui/icons/Person';
 import About from './Pages/About';
 import Projects from './Pages/Projects';
+import { CircularProgress } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   menuButton: {
@@ -25,6 +26,13 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("sm")]: {
       marginLeft: 240
     }
+  }, 
+  
+  loading: {
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      height: '100vh',
   }
 }));
 
@@ -42,9 +50,17 @@ const App = () => {
         });
     }, []);
 
+  
+  if(user == null) {
+    return (
+      <div className={classes.loading}>
+          <CircularProgress size={100} />
+      </div>)
+  }
+
   return (
     <Router>
-      <Sidebar SidebarNames={['Home', 'About Me', 'Projects']} Links={['/', '/about','/projects']}  SidebarIcons={[<HomeIcon />, <PersonIcon />, <AccountTreeIcon />]}/>
+      <Sidebar SidebarNames={['Home', 'About Me', 'Projects']} Links={['/', '/about','/projects']}  SidebarIcons={[<HomeIcon />, <PersonIcon />, <AccountTreeIcon />]} user={user}/>
       <div className={classes.offset}>
         <Switch>
           <Route path="/about" component={() => (<About user={user} />)} />

@@ -25,12 +25,6 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#927fbf',
         color: '#FFFFFF'
     },
-    loading: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: '100vh',
-    },
     text: {
         color: '#FFFFFF',
         opacity: '60%',
@@ -43,6 +37,12 @@ const useStyles = makeStyles((theme) => ({
         '&:hover': {
             backgroundColor: "#525252",
           },
+    },
+
+    centeredText: {
+        display: 'flex',
+        justifyContent: 'center',
+        margin: '50px'
     }
 
 }));
@@ -89,7 +89,7 @@ const Projects = ({user}) => {
 
     return ( 
         <div className={classes.parent}>
-            <Typography variant='h3'>My Projects</Typography>
+            <Typography variant='h2' className={classes.centeredText}>My Projects</Typography>
             <Grid
                 container
                 direction="row"

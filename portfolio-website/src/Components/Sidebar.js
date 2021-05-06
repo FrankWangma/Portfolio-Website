@@ -34,6 +34,13 @@ const useStyles = makeStyles((theme) => ({
 
     link: {
         color: '#fff'
+    },
+
+    circularImage: {
+        borderRadius: "50%",
+        width: 100,
+        height: 100,
+        display: "block"
     }
 }));
 
@@ -49,7 +56,7 @@ const ListItemButton = withStyles({
 
 
 
-const Sidebar = ({SidebarIcons, SidebarNames, Links}) => {
+const Sidebar = ({SidebarIcons, SidebarNames, Links, user}) => {
     const classes = useStyles();
     const [isDrawerOpen, setIsDrawerOpen] = useState(false)
 
@@ -60,6 +67,12 @@ const Sidebar = ({SidebarIcons, SidebarNames, Links}) => {
     const drawerContent = (
         <div>
             <List onClick={isDrawerOpen ? handleDrawerToggle : null}>
+                <Slide in={true} direction='right' timeout={200} >
+                    <ListItem style={{display:'flex', justifyContent:'center'}} key='name'> 
+                        <img className={classes.circularImage} src={user.basics.image} alt='profile'/>
+                    </ListItem>
+                </Slide>
+               
                 <Slide in={true} direction='right' timeout={200} >
                     <ListItem style={{display:'flex', justifyContent:'center'}} key='name'> 
                         <Typography classes={{root: classes.Text}} variant="h5" >Frank Wang Ma</Typography>

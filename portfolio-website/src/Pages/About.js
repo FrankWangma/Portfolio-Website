@@ -1,21 +1,27 @@
 import React from 'react';
-import { CircularProgress, Grid, Grow, makeStyles, Slide, Typography } from '@material-ui/core'
+import { Grid, Grow, makeStyles, Slide, Typography } from '@material-ui/core'
 import { CSharpIcon, CssIcon, JavaIcon, JSIcon, NodejsIcon, ReactIcon } from '../Components/Icons'
 import WorkTimeline from '../Components/WorkTimeline'
 
 const useStyles = makeStyles( () => ({
+    parent: {
+        marginTop: '5%'
+    },
+    divider: {
+        marginTop: '80px',
+    },
     icon: {
         width: 75,
         height: 75,
         margin: 20,
-        
     },
     timeline: {
         margin: 50
     },
     text: {
         display: 'flex',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        margin: '0 50px 0 50px'
     },
     loading: {
         display: 'flex',
@@ -33,20 +39,13 @@ const About = ({user}) => {
     const DevIcons = [<CSharpIcon />, <JavaIcon />, <JSIcon />, <ReactIcon />, <CssIcon />, <NodejsIcon />]
     const DevNames = ["C Sharp", "Java", "Javascript", "React", "CSS", "NodeJS"]
 
-    if(user == null) {
-        return (
-        <div className={classes.loading}>
-            <CircularProgress size={100} />
-        </div>)
-    }
-        
     return (
-        <div>
+        <div className={classes.parent}>
             <Grow in={true}>
                 <div>
-                    <Typography variant='h1' className={classes.text}>Who Am I?</Typography>
+                    <Typography variant='h2' className={classes.text}>Who Am I?</Typography>
                     <Typography className={classes.text}>I am a Software Engineer who has recently graduated from The University of Auckland with first class honours.</Typography>
-                    
+                    <div className={classes.divider}/>
                     <Typography variant='h3' className={classes.text}>Skills</Typography>
                 </div>
             </Grow>
