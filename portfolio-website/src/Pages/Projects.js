@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Card, CardActionArea, CardHeader, CardMedia, CardContent, Grid, makeStyles, Typography, Grow, CircularProgress, CardActions, Button } from '@material-ui/core'
 import ProjectModal from '../Components/ProjectModal';
 
@@ -47,19 +47,10 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-const Projects = () => {
+const Projects = ({user}) => {
     const [selectedProject, setSelectedProject] = useState(null);
     const [openModal, setOpenModal] = useState(false);
-    const [user, setUser] = useState(null)
 
-    useEffect(() => {
-      fetch('https://gitconnected.com/v1/portfolio/frankwangma')
-        .then(res => res.json())
-        .then(user => {
-          setUser(user);
-        });
-    }, []);
-    
     let largestHeight = 0;
     if(user) {
         user.projects.map((project) => {

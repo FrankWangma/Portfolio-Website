@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import { CircularProgress, Grid, Grow, makeStyles, Slide, Typography } from '@material-ui/core'
 import { CSharpIcon, CssIcon, JavaIcon, JSIcon, NodejsIcon, ReactIcon } from '../Components/Icons'
 import WorkTimeline from '../Components/WorkTimeline'
@@ -25,17 +25,7 @@ const useStyles = makeStyles( () => ({
     }
 }))
 
-const About = () => {
-
-    const [user, setUser] = useState(null)
-
-    useEffect(() => {
-      fetch('https://gitconnected.com/v1/portfolio/frankwangma')
-        .then(res => res.json())
-        .then(user => {
-          setUser(user);
-        });
-    }, []);
+const About = ({user}) => {
 
     let timeout = 200
 
@@ -55,7 +45,7 @@ const About = () => {
             <Grow in={true}>
                 <div>
                     <Typography variant='h1' className={classes.text}>Who Am I?</Typography>
-                    <Typography className={classes.text}>I am a Software Engineer who has recently graduated from <b>The University of Auckland</b> with first class honours.</Typography>
+                    <Typography className={classes.text}>I am a Software Engineer who has recently graduated from The University of Auckland with first class honours.</Typography>
                     
                     <Typography variant='h3' className={classes.text}>Skills</Typography>
                 </div>

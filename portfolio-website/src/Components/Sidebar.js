@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Drawer, Hidden, List, ListItemIcon, ListItemText, Typography, ListItem, Grid, Divider, Slide} from '@material-ui/core';
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import { SocialIcon  } from 'react-social-icons'
+import MenuIcon from "@material-ui/icons/Menu";
+import IconButton from "@material-ui/core/IconButton";
 
 const useStyles = makeStyles((theme) => ({
 
@@ -47,12 +49,17 @@ const ListItemButton = withStyles({
 
 
 
-const Sidebar = (props) => {
+const Sidebar = ({SidebarIcons, SidebarNames, Links}) => {
     const classes = useStyles();
+    const [isDrawerOpen, setIsDrawerOpen] = useState(false)
+
+    const handleDrawerToggle = () => {
+        setIsDrawerOpen(!isDrawerOpen);
+    }
       
     const drawerContent = (
         <div>
-            <List onClick={props.isDrawerOpen? props.handleDrawerToggle : null}>
+            <List onClick={isDrawerOpen ? handleDrawerToggle : null}>
                 <Slide in={true} direction='right' timeout={200} >
                     <ListItem style={{display:'flex', justifyContent:'center'}} key='name'> 
                         <Typography classes={{root: classes.Text}} variant="h5" >Frank Wang Ma</Typography>
@@ -66,12 +73,12 @@ const Sidebar = (props) => {
                         </Typography>
                     </ListItem>
                 </Slide>
-                {props.SidebarNames.map((text, index) => (
+                {SidebarNames.map((text, index) => (
                     <div key={index}>
-                    <Link to={props.Links[index]} style={{ textDecoration: 'none' }}>
+                    <Link to={Links[index]} style={{ textDecoration: 'none' }}>
                         <Slide in={true} direction='right' timeout={200 * (index + 3)}>
                             <ListItemButton button key={index}>
-                                <ListItemIcon classes={{root: classes.Icon}}>{props.SidebarIcons[index]}</ListItemIcon>
+                                <ListItemIcon classes={{root: classes.Icon}}>{SidebarIcons[index]}</ListItemIcon>
                                 <ListItemText classes={{root: classes.Text}}>{text}</ListItemText>
                             </ListItemButton>
                         </Slide>
@@ -93,12 +100,22 @@ const Sidebar = (props) => {
     return (
         <div>
             <Hidden smUp implementation="css">
+                <IconButton
+                    edge="start"
+                    onClick={handleDrawerToggle}
+                    className={classes.menuButton}
+                >
+                    <MenuIcon 
+                        style={{ color: 'white' }}
+                        fontSize='large'
+                    />
+                </IconButton>
                 <Drawer
                     variant='temporary'
                     classes={{paper: classes.MuiDrawer}}
                     anchor='left'
-                    open={props.isDrawerOpen}
-                    onClose={props.handleDrawerToggle}
+                    open={isDrawerOpen}
+                    onClose={handleDrawerToggle}
                 >
                     {drawerContent}
                 </Drawer>
