@@ -2,6 +2,9 @@ import React from 'react'
 import { Dialog, DialogTitle, DialogContent, DialogContentText, Chip, DialogActions, Button, IconButton, Box, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import CloseIcon from '@material-ui/icons/Close';
+import ImageGallery from 'react-image-gallery';
+import "react-image-gallery/styles/css/image-gallery.css";
+
 
 const useStyles = makeStyles((theme) => ({
     root: {   
@@ -35,6 +38,9 @@ const useStyles = makeStyles((theme) => ({
     },
     chip: {
         backgroundColor: '#927fbf',
+    }, 
+    image: {
+        height: '600px',
     }
 
   }));
@@ -45,6 +51,16 @@ const ProjectModal = ({open, handleClose, project}) => {
     const handleOpenLink = () => {
         window.open(project.githubUrl, '_blank');
     }
+    const imageArray = [];
+    project.images.map((image) => {
+        const imageUrl = {
+            original: image.resolutions.desktop.url,
+            thumbnail: image.resolutions.thumbnail.url,
+            originalClass: classes.image
+        }
+        return imageArray.push(imageUrl);
+    })
+
     return (
         <Dialog 
             className={classes.root}
@@ -64,7 +80,7 @@ const ProjectModal = ({open, handleClose, project}) => {
             </Box>
             </DialogTitle>
             <DialogContent className={classes.dialogContent} dividers>
-                <img src={project.images[0].resolutions.desktop.url} alt={''} />
+                <ImageGallery items={imageArray} showFullscreenButton={false} showPlayButton={false} showBullets={true}/>
                 <DialogContentText className={classes.text}>
                     {project.summary}
                 </DialogContentText>
