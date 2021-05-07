@@ -13,7 +13,6 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#2b2b2b',
     },
     clickable: {
-        height: '100%',
         maxWidth: 500,
     },
     image: {
@@ -101,24 +100,24 @@ const Projects = ({user}) => {
                     <Grid item xs
                     justify="center">
                         <Grow in={true} timeout={timeout * (index + 1)}>
-                            <CardActionArea className={classes.clickable} onClick={() => expandCard(project)}>
                                 <Card className={classes.root}>
-                                        <CardHeader className={classes.title} title={project.name} />
-                                        <CardMedia>
-                                            <img className={classes.image} src={project.images[0].resolutions.mobile.url} alt={''} />
-                                        </CardMedia>
-                                        <CardContent>
-                                            <Typography variant="body2" color="textSecondary" component="p" className={classes.text}>
-                                                {project.summary}
-                                            </Typography>
-                                        </CardContent>
+                                        <CardActionArea className={classes.clickable} onClick={() => expandCard(project)}>
+                                                <CardHeader className={classes.title} title={project.name} />
+                                                <CardMedia>
+                                                    <img className={classes.image} src={project.images[0].resolutions.mobile.url} alt={''} />
+                                                </CardMedia>
+                                                <CardContent>
+                                                    <Typography variant="body2" color="textSecondary" component="p" className={classes.text}>
+                                                        {project.summary}
+                                                    </Typography>
+                                                </CardContent>
+                                        </CardActionArea>
                                         <CardActions className={classes.cardActions}>
                                             <Button className={classes.button} size='large' onClick={() => handleOpenLink(project)}>
                                                 Open on GitHub
                                             </Button>
                                         </CardActions>
                                 </Card>
-                            </CardActionArea>
                         </Grow>
                     </Grid>
                 ))}
