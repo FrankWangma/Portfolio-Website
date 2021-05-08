@@ -37,11 +37,15 @@ const useStyles = makeStyles((theme) => ({
             backgroundColor: "#525252",
           },
     },
-
     centeredText: {
         display: 'flex',
         justifyContent: 'center',
         margin: '50px'
+    },
+    
+    grid: {
+        display: 'flex',
+        justifyContent: 'center',
     }
 
 }));
@@ -92,12 +96,13 @@ const Projects = ({user}) => {
             <Grid
                 container
                 direction="row"
+                alignItems="center"
                 justify="center"
-                alignItems="stretch"
-                spacing={3}
+                style={{ minHeight: '100vh'}}
+                spacing={5}
             >
                 {user.projects.map((project, index) => (
-                    <Grid item xs
+                    <Grid item
                     justify="center">
                         <Grow in={true} timeout={timeout * (index + 1)}>
                                 <Card className={classes.root}>
