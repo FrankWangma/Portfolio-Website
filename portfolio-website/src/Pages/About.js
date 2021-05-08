@@ -23,12 +23,6 @@ const useStyles = makeStyles( () => ({
         justifyContent: 'center',
         margin: '0 50px 0 50px'
     },
-    loading: {
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        height: '100vh',
-    }
 }))
 
 const About = ({user}) => {
@@ -38,13 +32,13 @@ const About = ({user}) => {
     const classes = useStyles()
     const DevIcons = [<CSharpIcon />, <JavaIcon />, <JSIcon />, <ReactIcon />, <CssIcon />, <NodejsIcon />]
     const DevNames = ["C Sharp", "Java", "Javascript", "React", "CSS", "NodeJS"]
-
+    
     return (
         <div className={classes.parent}>
             <Grow in={true}>
                 <div>
                     <Typography variant='h2' className={classes.text}>Who Am I?</Typography>
-                    <Typography className={classes.text}>I am a Software Engineer who has recently graduated from The University of Auckland with first class honours.</Typography>
+                    <Typography className={classes.text}>{user.basics.summary}</Typography>
                     <div className={classes.divider}/>
                     <Typography variant='h3' className={classes.text}>Skills</Typography>
                 </div>
