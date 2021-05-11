@@ -8,7 +8,7 @@ const useStyles = makeStyles( () => ({
         marginTop: '5%'
     },
     divider: {
-        marginTop: '80px',
+        marginTop: '50px',
     },
     icon: {
         width: 75,
@@ -21,8 +21,14 @@ const useStyles = makeStyles( () => ({
     text: {
         display: 'flex',
         justifyContent: 'center',
+        alignItems: 'center',
         margin: '0 50px 0 50px'
     },
+    textContainer: {
+        wordWrap: 'break-word',
+        width: '33vw',
+        marginLeft: '33%'
+    }
 }))
 
 const About = ({user}) => {
@@ -38,7 +44,7 @@ const About = ({user}) => {
             <Grow in={true}>
                 <div>
                     <Typography variant='h2' className={classes.text}>Who Am I?</Typography>
-                    <Typography className={classes.text}>{user.basics.summary}</Typography>
+                    <Typography className={`${classes.text} ${classes.textContainer}`} align='justify'>{user.basics.summary}</Typography>
                     <div className={classes.divider}/>
                     <Typography variant='h3' className={classes.text}>Skills</Typography>
                 </div>
