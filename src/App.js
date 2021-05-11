@@ -65,8 +65,8 @@ const App = () => {
         <Switch>
           <Route path="/about" component={() => (<About user={user} />)} />
           <Route path="/projects" component={() => (<Projects user={user} />)}/>
-          <Route path="/" component={Home} />
-          <Route path="*" component={Home} />
+          <Route path="/" component={() => <Home user={user} />} />
+          <Route path="*" component={() => <Home user={user} />} />
         </Switch>
       </div>
     </Router>

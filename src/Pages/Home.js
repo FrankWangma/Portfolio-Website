@@ -10,23 +10,31 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         justifyContent: 'center',
         height: '100vh',
-        width: "33vw",
+        width: "50vw",
+        marginLeft: '2%'
     },
     container: {
         margin: '20px',
         marginBottom: '50px'
+    },
+    subtext: {
+        opacity: '60%',
+        marginBottom: '20px'
     }
   }));
 
-const Home = ()  => {
+const Home = ({user})  => {
 
     const classes = useStyles();
     return (
         <div className={classes.root}>
             <Grid container className={classes.container}>
-                <Grid item xs='12'>
+                <Grid item xs={12}>
                     <Slide in={true} direction='right' timeout={500}>
-                        <Typography variant='h1'>Hi! I am Frank!</Typography>
+                        <Typography variant='h1'>{user.basics.name}</Typography>
+                    </Slide>
+                    <Slide in={true} direction='right' timeout={500}>
+                        <Typography variant='h3' className={classes.subtext}>{user.basics.label}</Typography>
                     </Slide>
                 </Grid>
                 
