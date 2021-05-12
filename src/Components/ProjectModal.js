@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: project.images[0].resolutions.desktop.width,
         color: '#FFFFFF',
         opacity: '60%',
+        textAlign: 'justify'
     }),
 
     titleText: {
@@ -81,7 +82,7 @@ const ProjectModal = ({open, handleClose, project}) => {
             </DialogTitle>
             <DialogContent className={classes.dialogContent} dividers>
                 <ImageGallery items={imageArray} showFullscreenButton={false} showPlayButton={false} showBullets={true}/>
-                <DialogContentText className={classes.text}>
+                <DialogContentText className={classes.titleText}>
                     {project.summary}
                 </DialogContentText>
                 <DialogContentText className={classes.text}>

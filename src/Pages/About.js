@@ -26,8 +26,10 @@ const useStyles = makeStyles( () => ({
     },
     textContainer: {
         wordWrap: 'break-word',
-        width: '33vw',
-        marginLeft: '33%'
+        width: '50vw',
+        textAlign: 'justify',
+        marginLeft: 'auto',
+        marginRight: 'auto'
     }
 }))
 
@@ -44,7 +46,7 @@ const About = ({user}) => {
             <Grow in={true}>
                 <div>
                     <Typography variant='h2' className={classes.text}>Who Am I?</Typography>
-                    <Typography className={`${classes.text} ${classes.textContainer}`} align='justify'>{user.basics.summary}</Typography>
+                    <Typography className={`${classes.text} ${classes.textContainer}`} >{user.basics.summary}</Typography>
                     <div className={classes.divider}/>
                     <Typography variant='h3' className={classes.text}>Skills</Typography>
                 </div>
