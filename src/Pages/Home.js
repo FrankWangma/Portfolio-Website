@@ -3,7 +3,8 @@ import {Typography, Button, Grid, Slide} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { Link } from 'react-router-dom';
 import GetAppIcon from '@material-ui/icons/GetApp';
-import backgroundImage from '../Components/background.png'
+import backgroundImage from '../Components/background.png';
+import smallImage from '../Components/background.png';
 
 const useStyles = makeStyles((theme) => ({
     root: {   
@@ -11,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         justifyContent: 'center',
         height: '100vh',
-        marginLeft: '2%'
+        marginLeft: '2%',
     },
     backgroundImage: image => ({
         backgroundImage: `url("${image.url}")`,
@@ -19,8 +20,15 @@ const useStyles = makeStyles((theme) => ({
         backgroundRepeat: 'no-repeat',
         backgroundPosition: 'right',
         backgroundSize:'contain',
-        alignItems: 'left',
+        
+        [theme.breakpoints.down('md')]: {
+            backgroundImage: `url("${image.smallImageUrl}")`,
+            backgroundSize: '100vh',
+            backgroundPosition: 'left',
+            alignItems: 'center'
+        },
     }),
+
     container: {
         margin: '20px',
         marginBottom: '50px'
@@ -33,7 +41,7 @@ const useStyles = makeStyles((theme) => ({
   
 const Home = ({user})  => {
 
-    const image = { url: backgroundImage};
+    const image = { url: backgroundImage, smallImageUrl: smallImage};
     const classes = useStyles(image);
     return (
         <div className={`${classes.root} ${classes.backgroundImage}`} style={{ 
